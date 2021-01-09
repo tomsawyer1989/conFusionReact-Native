@@ -10,19 +10,20 @@ function RenderItem(props) {
     const item = props.item;
     
     if (item != null) {
-        return(
+        return (
             <Card
                 featuredTitle={item.name}
                 featuredSubtitle={item.designation}
-                image={require('./images/uthappizza.png')}>
-                <Text
-                    style={{margin: 10}}>
-                    {item.description}</Text>
+                image={require('./images/uthappizza.png')}
+            >
+                <Text style={{margin: 10}}>
+                    {item.description}
+                </Text>
             </Card>
         );
     }
     else {
-        return(<View></View>);
+        return (<View></View>);
     }
 }
 
@@ -42,7 +43,7 @@ class Home extends Component {
     };
 
     render() {
-        return(
+        return (
             <ScrollView>
                 <RenderItem item={this.state.dishes.filter((dish) => dish.featured)[0]} />
                 <RenderItem item={this.state.promotions.filter((promo) => promo.featured)[0]} />

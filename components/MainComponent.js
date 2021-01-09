@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Home from './HomeComponent';
+import About from './AboutComponent';
 import Menu from './MenuComponent';
 import Dishdetail from './DishdetailComponent';
+import Contact from './ContactComponent';
 import { View, Platform } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { createAppContainer } from 'react-navigation';
@@ -26,6 +28,24 @@ const HomeNav = createStackNavigator({
 
 const HomeNavigator = createAppContainer(HomeNav);
 
+const AboutNav = createStackNavigator({
+    About: { screen: About }
+  }, 
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#512DA8"
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        color: "#fff"            
+      }
+    }
+  }
+);
+
+const AboutNavigator = createAppContainer(AboutNav);
+
 const MenuNav = createStackNavigator({
     Menu: { screen: Menu },
     Dishdetail: { screen: Dishdetail }
@@ -46,6 +66,24 @@ const MenuNav = createStackNavigator({
 
 const MenuNavigator = createAppContainer(MenuNav);
 
+const ContactNav = createStackNavigator({
+    Contact: { screen: Contact }
+  }, 
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#512DA8"
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        color: "#fff"            
+      }
+    }
+  }
+);
+
+const ContactNavigator = createAppContainer(ContactNav);
+
 const MainNav = createDrawerNavigator({
     Home: { 
       screen: HomeNavigator,
@@ -54,11 +92,25 @@ const MainNav = createDrawerNavigator({
         drawerLabel: 'Home'
       }
     },
+    About: { 
+      screen: AboutNavigator,
+      navigationOptions: {
+        title: 'About Us',
+        drawerLabel: 'About Us'
+      }
+    },
     Menu: { 
       screen: MenuNavigator,
       navigationOptions: {
         title: 'Menu',
         drawerLabel: 'Menu'
+      } 
+    },
+    Contact: { 
+      screen: ContactNavigator,
+      navigationOptions: {
+        title: 'Contact Us',
+        drawerLabel: 'Contact Us'
       } 
     }
   }, 

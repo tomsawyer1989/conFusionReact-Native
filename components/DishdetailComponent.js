@@ -7,7 +7,7 @@ function RenderDish(props) {
     const dish = props.dish;
     
     if (dish != null) {
-        return(
+        return (
             <Card
                 featuredTitle={dish.name}
                 image={require('./images/uthappizza.png')}
@@ -19,7 +19,7 @@ function RenderDish(props) {
         );
     }
     else {
-        return(<View></View>);
+        return (<View></View>);
     }
 }
 
@@ -40,7 +40,7 @@ class Dishdetail extends Component {
 
         const dishId = this.props.navigation.getParam('dishId','');
         
-        return(
+        return (
             <RenderDish dish={this.state.dishes[+dishId]} />
         );
     }
