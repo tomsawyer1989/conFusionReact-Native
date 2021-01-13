@@ -18,10 +18,6 @@ function RenderContact() {
 }
 
 class Contact extends Component {
-    constructor(props) {
-        super(props);
-        
-    }
 
     static navigationOptions = {
         title: 'Contact Us'
