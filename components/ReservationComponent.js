@@ -27,7 +27,7 @@ class Reservation extends Component {
     }
 
     onConfirmDateTimePicker = (date) => {
-        this.setState({date: date}); 
+        this.setState({date: date.toISOString()});
         this.toggleDateTimePicker();
     }
 
@@ -89,7 +89,7 @@ class Reservation extends Component {
                         onPress={() => this.toggleDateTimePicker()}
                     />
                     <TextInput
-                        defaultValue={this.state.date === '' ? 'select date and time' : this.state.date.toISOString()}
+                        defaultValue={this.state.date === '' ? 'select date and time' : this.state.date}
                         style={{ backgroundColor: '#FFF' }}  
                         editable={false}
                         maxLength={20}
@@ -116,7 +116,7 @@ class Reservation extends Component {
                         <Text style = {styles.modalTitle}>Your Reservation</Text>
                         <Text style = {styles.modalText}>Number of Guests: {this.state.guests}</Text>
                         <Text style = {styles.modalText}>Smoking?: {this.state.smoking ? 'Yes' : 'No'}</Text>
-                        <Text style = {styles.modalText}>Date and Time: {this.state.date.toISOString()}</Text>
+                        <Text style = {styles.modalText}>Date and Time: {this.state.date}</Text>
                         <Button 
                             onPress = {() =>{this.toggleModal(); this.resetForm();}}
                             buttonStyle={{backgroundColor: '#512DA8'}}
