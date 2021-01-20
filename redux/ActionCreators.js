@@ -31,6 +31,17 @@ export const addComments = (comments) => ({
     payload: comments
 });
 
+export const postComment = (comment)  => (dispatch) => {
+    setTimeout(() => {
+        dispatch(addComment(comment));
+    }, 2000);
+};
+
+export const addComment = (comment) => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: comment
+});
+
 export const fetchDishes = () => (dispatch) => {
 
     dispatch(dishesLoading());
@@ -143,12 +154,10 @@ export const addLeaders = (leaders) => ({
 });
 
 export const postFavorite = (dishId)  => (dispatch) => {
-
     setTimeout(() => {
         dispatch(addFavorite(dishId));
     }, 2000);
 };
-
 
 export const addFavorite = (dishId) => ({
     type: ActionTypes.ADD_FAVORITE,
