@@ -10,7 +10,7 @@ const mapStateToProps = state => {
     return {
       dishes: state.dishes,
       comments: state.comments,
-      favorites: state.favorites
+      favorites: state.favorites,
     }
 }
 
