@@ -65,7 +65,7 @@ class Home extends Component {
     }
 
     animate () {
-        this.animatedValue.setValue(0)
+        this.animatedValue.setValue(0);
         Animated.timing(
           this.animatedValue,
           {
@@ -73,7 +73,8 @@ class Home extends Component {
             duration: 8000,
             easing: Easing.linear
           }
-        ).start(() => this.animate());
+        )
+        .start(() => this.animate());
     }
 
     render() {
