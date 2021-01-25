@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Login from './LoginComponent';
 import Home from './HomeComponent';
 import About from './AboutComponent';
 import Menu from './MenuComponent';
@@ -30,8 +31,8 @@ const mapDispatchToProps = dispatch => ({
   fetchLeaders: () => dispatch(fetchLeaders()),
 })
 
-const HomeNav = createStackNavigator({
-    Home: { screen: Home }
+const LoginNav = createStackNavigator({
+    Login: { screen: Login }
   }, 
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -47,6 +48,27 @@ const HomeNav = createStackNavigator({
         onPress={ () => navigation.toggleDrawer() } />    
       })
   }
+);
+
+const LoginNavigator = createAppContainer(LoginNav);
+
+const HomeNav = createStackNavigator({
+  Home: { screen: Home }
+}, 
+{
+  defaultNavigationOptions: ({ navigation }) => ({
+    headerStyle: {
+      backgroundColor: "#512DA8"
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      color: "#fff"            
+    },
+    headerLeft: <Icon name="menu" size={24}
+      color= 'white'
+      onPress={ () => navigation.toggleDrawer() } />    
+    })
+}
 );
 
 const HomeNavigator = createAppContainer(HomeNav);
@@ -178,6 +200,21 @@ const CustomDrawerContentComponent = (props) => (
 );
 
 const MainNav = createDrawerNavigator({
+    Login: { 
+      screen: LoginNavigator,
+      navigationOptions: {
+        title: 'Login',
+        drawerLabel: 'Login',
+        drawerIcon: ({ tintColor, focused }) => (
+          <Icon
+            name='sign-in'
+            type='font-awesome'            
+            size={24}
+            color={tintColor}
+          />
+        ),
+      }
+    },
     Home: { 
       screen: HomeNavigator,
       navigationOptions: {
@@ -270,6 +307,7 @@ const MainNav = createDrawerNavigator({
     }
   }, 
   {
+    initialRouteName: 'Home',
     drawerBackgroundColor: '#D1C4E9',
     contentComponent: CustomDrawerContentComponent
   }
