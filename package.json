@@ -13,6 +13,7 @@
     "@react-native-community/netinfo": "^5.9.10",
     "@react-native-community/picker": "^1.8.1",
     "expo": "~40.0.0",
+    "expo-calendar": "^9.0.0",
     "expo-image-manipulator": "^9.0.0",
     "expo-image-picker": "^10.0.0",
     "expo-mail-composer": "^10.0.0",

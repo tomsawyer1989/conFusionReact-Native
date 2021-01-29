@@ -5,6 +5,7 @@ import * as Animatable from 'react-native-animatable';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Picker } from '@react-native-community/picker';
 import * as Permissions from 'expo-permissions';
+import * as Calendar from 'expo-calendar';
 import { Notifications } from 'expo';
 
 class Reservation extends Component {
@@ -36,6 +37,7 @@ class Reservation extends Component {
     handleReservation = () => {
         console.log(JSON.stringify(this.state));
         this.presentLocalNotification(this.state.date);
+        this.addReservationToCalendar(this.state.date);
         this.resetForm();
     }
 
@@ -72,6 +74,32 @@ class Reservation extends Component {
                 color: '#512DA8'
             }
         });
+    }
+
+    obtainCalendarPermission = async () => {
+        let calendarPermission = await Permissions.askAsync(Permissions.CALENDAR);
+        if (calendarPermission.status !== 'granted') {
+            Alert.alert('Permission not granted to add reserve to calendar');
+        }
+        return calendarPermission;
+    }
+
+    addReservationToCalendar = async (date) => {
+        await this.obtainCalendarPermission();
+
+        const calendars = await Calendar.getCalendarsAsync();
+        const defaultCalendars = calendars.filter(each => each.accessLevel === 'owner');
+
+        const calendarId = defaultCalendars[0].id;
+        const details = {
+            title: 'ConFusion Table Reservation',
+            startDate: new Date(Date.parse(date)),
+            endDate: new Date(Date.parse(date) + (2*60*60*1000)),
+            timeZone: 'Asia/Hong_Kong',
+            location: '121, Clear Water Bay Road, Clear Water Bay, Kowloon, Hong Kong'
+        }
+
+        await Calendar.createEventAsync(calendarId, details);
     }
     
     render() {
